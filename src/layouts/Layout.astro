@@ -22,13 +22,9 @@ const { title } = Astro.props;
       <AsideMenu />
     </aside>
     <main class="col-span-2 rounded-lg bg-zinc-900 overflow-y-auto">
-      MAIN
-      <slot name="main" />
+      <slot />
     </main>
-    <footer class="col-span-full min-h-[100px] bg-zinc-900">
-      PLAYER
-      <slot name="player" />
-    </footer>
+    <footer class="col-span-full min-h-[100px] bg-zinc-900">PLAYER</footer>
   </body>
 </html>
 
