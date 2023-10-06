@@ -17,7 +17,7 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="relative h-screen p-2 gap-2 bg-[#121212] font-sans">
+  <body class="relative h-screen p-2 gap-2 bg-[#121212]">
     <aside>
       <AsideMenu />
     </aside>
@@ -30,12 +30,69 @@ const { title } = Astro.props;
       <slot name="player" />
     </footer>
   </body>
-
-  <style>
-    body {
-      display: grid;
-      grid-template-columns: 350px 1fr 350px;
-      grid-template-rows: 1fr auto;
-    }
-  </style>
 </html>
+
+<style>
+  body {
+    display: grid;
+    grid-template-columns: 350px 1fr 350px;
+    grid-template-rows: 1fr auto;
+    font-family:
+      'CircularStd',
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      'Helvetica Neue',
+      Arial,
+      'Noto Sans',
+      sans-serif,
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol',
+      'Noto Color Emoji';
+  }
+</style>
+
+<style is:global>
+  @font-face {
+    font-family: 'CircularStd';
+    src: url('/fonts/CircularStd-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'CircularStd';
+    src: url('/fonts/CircularStd-Book.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'CircularStd';
+    src: url('/fonts/CircularStd-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'CircularStd';
+    src: url('/fonts/CircularStd-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'CircularStd';
+    src: url('/fonts/CircularStd-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+</style>
