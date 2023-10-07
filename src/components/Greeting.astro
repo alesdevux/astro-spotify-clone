@@ -1,12 +1,7 @@
 ---
-const currentTime = new Date();
-const currentHour = currentTime.getHours();
+import { useGreeting } from '@hooks/useGreeting';
 
-let greeting = '';
-
-if (currentHour < 12) greeting = 'Good morning';
-else if (currentHour < 18) greeting = 'Good afternoon';
-else greeting = 'Good evening';
+const { greeting } = useGreeting();
 ---
 
 <h3 class="text-3xl pt-10 pb-6 font-bold">{greeting}</h3>
