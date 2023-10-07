@@ -1,4 +1,5 @@
 import { Pause, Play } from "@icons"
+import { usePlayerStore } from "@store/playerStore";
 
 interface PlayButtonCardProps {
   playlistId: string
@@ -7,9 +8,15 @@ interface PlayButtonCardProps {
 export function PlayButtonCard ({
   playlistId,
 }: PlayButtonCardProps): JSX.Element {
+  const { currentMusic, isPlaying, setIsPlaying, setCurrentMusic } = usePlayerStore(state => state)
+
+  const handlePlay = () => {
+    setIsPlaying(!isPlaying)
+  }
+
   return (
-    <div className="card-play-button rounded-full bg-green-500 p-4">
-      <Play />
-    </div>
+    <button onClick={handlePlay} className="card-play-button rounded-full bg-green-500 p-4">
+      {isPlaying ? <Pause /> : <Play />}
+    </button>
   )
 }

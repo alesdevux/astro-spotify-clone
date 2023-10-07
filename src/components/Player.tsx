@@ -1,8 +1,10 @@
 import { Pause, Play } from "@icons"
+import { usePlayerStore } from "@store/playerStore"
 import { useEffect, useRef, useState } from "react"
 
 export function Player (): JSX.Element {
-  const [isPlaying, setIsPlaying] = useState<boolean>(false)
+  // const [isPlaying, setIsPlaying] = useState<boolean>(false)
+  const { isPlaying, setIsPlaying } = usePlayerStore(state => state)
   const audioRef = useRef<HTMLAudioElement>(null)
 
   useEffect(() => {
