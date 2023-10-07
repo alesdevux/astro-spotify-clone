@@ -11,7 +11,7 @@ export function PlayButtonCard ({
 }: PlayButtonCardProps): JSX.Element {
   const { currentMusic, isPlaying, setIsPlaying, setCurrentMusic } = usePlayerStore(state => state)
 
-  const isPlayingPlaylist = currentMusic?.playlist?.id === playlistId
+  const isPlayingPlaylist = isPlaying && currentMusic?.playlist?.id === playlistId
 
   const handlePlay = () => {
     if (isPlayingPlaylist) {

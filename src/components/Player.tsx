@@ -3,25 +3,24 @@ import { usePlayerStore } from "@store/playerStore"
 import { useEffect, useRef } from "react"
 
 export function Player (): JSX.Element {
-  const { isPlaying, setIsPlaying } = usePlayerStore(state => state)
+  const { isPlaying, setIsPlaying, currentMusic } = usePlayerStore(state => state)
   const audioRef = useRef<HTMLAudioElement>(null)
 
   useEffect(() => {
-    if (!audioRef.current) return
+    isPlaying ? audioRef.current?.play() : audioRef.current?.pause()
+  }, [isPlaying])
 
-    audioRef.current.src = `/music/1/01.mp3`
-  }, [])
+  useEffect(() => {
+    const { song, playlist, songs } = currentMusic
 
-  const handlePlay = () => {
-    if (!audioRef.current) return
-
-    if (isPlaying) audioRef.current.pause()
-    if (!isPlaying) {
-      audioRef.current.volume = 0.5
-      audioRef.current.play()
+    if (song) {
+      const src = `/music/${playlist?.id}/0${song.id}.mp3`
+      audioRef.current?.setAttribute("src", src)
+      audioRef.current?.play()
     }
-    setIsPlaying(!isPlaying)
-  }
+  }, [currentMusic])
+
+  const handlePlay = () => setIsPlaying(!isPlaying)
 
   return (
     <div className="flex items-center justify-between w-full px-4 z-50">
