@@ -11,23 +11,27 @@ export function PlayButtonCard ({
 }: PlayButtonCardProps): JSX.Element {
   const { currentMusic, isPlaying, setIsPlaying, setCurrentMusic } = usePlayerStore(state => state)
 
-  const handlePlay = () => {
-    setCurrentMusic({
-      playlist: {
-        id: playlistId,
-        albumId: Number(playlistId),
-        title: playlists[Number(playlistId)].title,
-        color: playlists[Number(playlistId)].color,
-        cover: playlists[Number(playlistId)].cover,
-        artists: playlists[Number(playlistId)].artists,
-      },
-      song: null,
-      songs: [],
-    })
-    setIsPlaying(!isPlaying)
-  }
-
   const isPlayingPlaylist = currentMusic?.playlist?.id === playlistId
+
+  const handlePlay = () => {
+    if (isPlayingPlaylist) {
+      setIsPlaying(false)
+      return
+    }
+    
+    fetch(`/api/get-info-playlist.json?id=${playlistId}`)
+      .then(res => res.json())
+      .then(data => {
+        const { playlist, songs } = data
+
+        setIsPlaying(true)
+        setCurrentMusic({
+          playlist,
+          songs,
+          song: songs[0],
+        })
+      })
+  }
 
   return (
     <button onClick={handlePlay} className="card-play-button rounded-full bg-green-500 p-4">
