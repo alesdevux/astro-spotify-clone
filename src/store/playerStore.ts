@@ -2,7 +2,7 @@ import type { Playlist, Song } from '@lib/data';
 import { create } from 'zustand';
 
 type CurrentMusic = {
-  playing: Playlist | null;
+  playlist: Playlist | null;
   song: Song | null;
   songs: Song[];
 };
@@ -17,7 +17,7 @@ type PlayerStore = {
 export const usePlayerStore = create<PlayerStore>((set) => ({
   isPlaying: false,
   currentMusic: {
-    playing: null,
+    playlist: null,
     song: null,
     songs: [],
   },
